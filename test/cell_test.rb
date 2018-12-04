@@ -10,4 +10,9 @@ class CellTest < Minitest::Test
     cell = Cell.new("B4")
     assert_instance_of Cell, cell
   end
+
+  def test_coordinate_of_cell
+    cell = Cell.new("B4")
+    assert_equal "B4", cell.coordinate
+  end
 end
