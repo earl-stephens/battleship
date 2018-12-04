@@ -33,4 +33,11 @@ class CellTest < Minitest::Test
     assert_equal cruiser, cell.ship
   end
 
+  def test_if_a_cell_is_not_empty
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    refute cell.empty?  
+  end
+
 end
