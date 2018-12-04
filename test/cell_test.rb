@@ -15,4 +15,10 @@ class CellTest < Minitest::Test
     cell = Cell.new("B4")
     assert_equal "B4", cell.coordinate
   end
+
+  def test_if_cell_has_a_ship
+    cell = Cell.new("B4")
+    assert_equal nil, cell.ship
+  end
+
 end
