@@ -13,4 +13,8 @@ class Cell
     end
   end
 
+  def place_ship(ship_arg)
+    @ship = ship_arg
+  end
+
 end
