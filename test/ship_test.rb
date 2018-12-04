@@ -23,4 +23,16 @@ class ShipTest < Minitest::Test
     assert_equal "Submarine", submarine.name
   end
 
+  def test_the_ship_length
+    cruiser = Ship.new("Cruiser", 3)
+
+    assert_equal 3, cruiser.length
+  end
+
+  def test_that_the_ship_can_have_a_different_length
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal 2, submarine.length
+  end
+
 end
