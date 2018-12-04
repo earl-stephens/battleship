@@ -1,7 +1,9 @@
 require 'pry'
 
 class Ship
-  def initialize(name, length)
+  attr_reader :name
 
+  def initialize(name, length)
+    @name = name
   end
 end
