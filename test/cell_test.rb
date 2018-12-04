@@ -21,4 +21,9 @@ class CellTest < Minitest::Test
     assert_equal nil, cell.ship
   end
 
+  def test_if_a_cell_is_empty
+      cell = Cell.new("B4")
+      assert cell.empty?
+  end
+
 end

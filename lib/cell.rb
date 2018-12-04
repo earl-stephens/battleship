@@ -7,5 +7,10 @@ class Cell
     @ship = nil
   end
 
+  def empty?
+    if @ship == nil
+    return true
+    end
+  end
 
 end
