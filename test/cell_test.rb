@@ -91,7 +91,7 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
     cell_2.render
-    assert_equal ".", cell_2.render`
+    assert_equal ".", cell_2.render
   end
 
   def test_optional_boolean_for_showing_a_ship
@@ -99,7 +99,7 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
     cell_2.render(true)
-    assert_equal "S", cell_2.render
+    assert_equal "S", cell_2.render(true)
     #next step change render method to accept
     #argument
   end

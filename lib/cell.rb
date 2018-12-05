@@ -34,12 +34,14 @@ class Cell
     end
   end
 
-  def render
+  def render(show_ship = false)
     # binding.pry
     if @fired_upon == true && empty? == true
       "M"
+    elsif show_ship == true && empty? == false
+      "S"
     else
-    "."
+      "."
     end
   end
 
