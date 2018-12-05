@@ -100,8 +100,7 @@ class CellTest < Minitest::Test
     cell_2.place_ship(cruiser)
     cell_2.render(true)
     assert_equal "S", cell_2.render(true)
-    #next step change render method to accept
-    #argument
+    
   end
 
 end
