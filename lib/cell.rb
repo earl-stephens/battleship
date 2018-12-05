@@ -23,4 +23,10 @@ class Cell
     @fired_upon
   end
 
+  def fire_upon
+    @fired_upon = true
+    @ship.hit
+    @ship.health
+  end
+
 end
