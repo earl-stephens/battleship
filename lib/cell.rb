@@ -36,7 +36,9 @@ class Cell
 
   def render(show_ship = false)
     # binding.pry
-    if @fired_upon == true && empty? == true
+    if @ship.sunk?
+      "X"
+    elsif @fired_upon == true && empty? == true
       "M"
     elsif show_ship == true && empty? == false
       "S"
