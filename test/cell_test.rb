@@ -86,6 +86,24 @@ class CellTest < Minitest::Test
     assert_equal "M", cell_1.render
   end
 
+  def test_render_occupied_returns_a_period
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cell_1.render
+    assert_equal ".", cell_1.render
+  end
+
+  def test_render_occupied_returns_a_s
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cell_1.show_ship = true
+    cell_1.render
+    # binding.pry
+    assert_equal "S", cell_1.render
+  end
+
   def test_it_renders_a_period
     skip
     cell_1 = Cell.new("B4")
