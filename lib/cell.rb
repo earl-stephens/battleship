@@ -90,6 +90,12 @@ class Cell
         else
           "."
         end
+      else #fired_upon? == true
+        if ship.sunk? == true
+          "X"
+        else
+          "H"
+        end
       end
     end
 
