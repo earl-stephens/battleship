@@ -11,7 +11,9 @@ class Cell
 
   def empty?
     if @ship == nil
-    return true
+      return true
+    else
+      return false
     end
   end
 

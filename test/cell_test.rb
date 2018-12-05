@@ -25,7 +25,7 @@ class CellTest < Minitest::Test
   end
 
   def test_if_a_cell_is_empty
-  # skip
+    # skip
     cell = Cell.new("B4")
     assert cell.empty?
   end
@@ -60,6 +60,7 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
     cell.fire_upon
+    # binding.pry
     assert_equal 2, cell.ship.health
   end
 
@@ -79,6 +80,7 @@ class CellTest < Minitest::Test
   end
 
   def test_it_renders_an_m_after_fire_upon_in_empty_cell
+    # skip
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
     assert_equal "M", cell_1.render
