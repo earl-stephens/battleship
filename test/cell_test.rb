@@ -37,7 +37,30 @@ class CellTest < Minitest::Test
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
-    refute cell.empty?  
+    refute cell.empty?
+  end
+
+  def test_that_ship_was_fired_upon
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    refute cell.fired_upon?
+  end
+
+  def test_does_fired_upon_affect_ship_health
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    cell.fire_upon
+    assert_equal 2, cell.ship.health
+  end
+
+  def test_that_fired_upon_can_return_true
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    cell.fire_upon
+    assert cell.fired_upon?
   end
 
 end
