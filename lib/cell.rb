@@ -3,10 +3,13 @@ class Cell
               :ship,
               :fired_upon
 
+  attr_accessor :show_ship
+
   def initialize(coordinate_arg)
     @coordinate = coordinate_arg
     @ship = nil
     @fired_upon = false
+    @show_ship = false
   end
 
   def empty?
@@ -34,13 +37,66 @@ class Cell
     end
   end
 
-  def render
-    # binding.pry
-    if @fired_upon == true && empty? == true
-      "M"
-    else
-    "."
+  # def render(show_ship = false)
+  #   # binding.pry
+  #   if empty? == true
+  #     if @fired_upon == false
+  #       "."
+  #     else
+  #       "M"
+  #     end
+  #   else
+  #     if @fired_upon == true && ship.sunk? == true
+  #       "X"
+  #     else
+  #       "H"
+  #     end
+  #   end
+    # if @ship.sunk?
+    #   "X"
+    # if @fired_upon == true && empty? == true
+    #   "M"
+    # elsif show_ship == true && empty? == false
+    #   "S"
+    # elsif @fired_upon == true && empty? == false
+    #   if ship.sunk? == true
+    #     "X"
+    #   else
+    #     "H"
+    #   end
+    # else
+    #   "."
+    # end
+    def render
+      if empty? == true
+        render_empty
+      else
+        render_occupied
+      end
     end
-  end
+
+    def render_empty
+      if fired_upon? == true
+        "M"
+      else
+        "."
+      end
+    end
+
+    def render_occupied
+      if fired_upon? == false
+        if @show_ship == true
+          "S"
+        else
+          "."
+        end
+      else #fired_upon? == true
+        if ship.sunk? == true
+          "X"
+        else
+          "H"
+        end
+      end
+    end
 
 end

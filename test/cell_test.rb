@@ -73,35 +73,53 @@ class CellTest < Minitest::Test
     assert cell.fired_upon?
   end
 
-  def test_it_renders_a_period
-    # skip
+  def test_render_empty_returns_a_period
     cell_1 = Cell.new("B4")
+    cell_1.render
     assert_equal ".", cell_1.render
   end
 
-  def test_it_renders_an_m_after_fire_upon_in_empty_cell
-    # skip
+  def test_render_empty_returns_a_miss
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
+    cell_1.render
     assert_equal "M", cell_1.render
   end
 
-  def test_it_renders_a_period_in_an_occupied_cell
-    cell_2 = Cell.new("C3")
+  def test_render_occupied_returns_a_period
+    cell_1 = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
-    cell_2.place_ship(cruiser)
-    cell_2.render
-    assert_equal ".", cell_2.render`
+    cell_1.place_ship(cruiser)
+    cell_1.render
+    assert_equal ".", cell_1.render
   end
 
-  def test_optional_boolean_for_showing_a_ship
-    cell_2 = Cell.new("C3")
+  def test_render_occupied_returns_a_s
+    cell_1 = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
-    cell_2.place_ship(cruiser)
-    cell_2.render(true)
-    assert_equal "S", cell_2.render
-    #next step change render method to accept
-    #argument
+    cell_1.place_ship(cruiser)
+    cell_1.show_ship = true
+    cell_1.render
+    assert_equal "S", cell_1.render
   end
 
+  def test_render_occupied_returns_an_h
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cell_1.fire_upon
+    cell_1.render
+    assert_equal "H", cell_1.render
+  end
+
+  def test_render_occupied_returns_an_x
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cell_1.fire_upon
+    cell_1.fire_upon
+    cell_1.fire_upon
+    cell_1.render
+    assert_equal "X", cell_1.render
+  end
 end
