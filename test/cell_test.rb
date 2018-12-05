@@ -63,4 +63,9 @@ class CellTest < Minitest::Test
     assert cell.fired_upon?
   end
 
+  def test_it_renders_a_period
+    cell_1 = Cell.new("B4")
+    assert_equal ".", cell_1.render
+  end
+
 end

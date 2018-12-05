@@ -29,4 +29,8 @@ class Cell
     @ship.health
   end
 
+  def render
+    "."
+  end
+
 end
