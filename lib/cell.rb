@@ -34,19 +34,50 @@ class Cell
     end
   end
 
-  def render(show_ship = false)
-    # binding.pry
-    if @ship.sunk?
-      "X"
-    elsif @fired_upon == true && empty? == true
-      "M"
-    elsif show_ship == true && empty? == false
-      "S"
-    elsif @fired_upon == true && empty? == false
-      "H"
-    else
-      "."
+  # def render(show_ship = false)
+  #   # binding.pry
+  #   if empty? == true
+  #     if @fired_upon == false
+  #       "."
+  #     else
+  #       "M"
+  #     end
+  #   else
+  #     if @fired_upon == true && ship.sunk? == true
+  #       "X"
+  #     else
+  #       "H"
+  #     end
+  #   end
+    # if @ship.sunk?
+    #   "X"
+    # if @fired_upon == true && empty? == true
+    #   "M"
+    # elsif show_ship == true && empty? == false
+    #   "S"
+    # elsif @fired_upon == true && empty? == false
+    #   if ship.sunk? == true
+    #     "X"
+    #   else
+    #     "H"
+    #   end
+    # else
+    #   "."
+    # end
+    def render(show_ship = false)
+      if empty? == true
+        render_empty
+      else
+        render_occupied
+      end
     end
-  end
+
+    def render_empty
+      if fired_upon? == true
+        "M"
+      else
+        "."
+      end
+    end
 
 end

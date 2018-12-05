@@ -73,20 +73,34 @@ class CellTest < Minitest::Test
     assert cell.fired_upon?
   end
 
+  def test_render_empty_returns_a_period
+    cell_1 = Cell.new("B4")
+    cell_1.render
+    assert_equal ".", cell_1.render
+  end
+
+  def test_render_empty_returns_a_miss
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+    cell_1.render
+    assert_equal "M", cell_1.render
+  end
+
   def test_it_renders_a_period
-    # skip
+    skip
     cell_1 = Cell.new("B4")
     assert_equal ".", cell_1.render
   end
 
   def test_it_renders_an_m_after_fire_upon_in_empty_cell
-    # skip
+    skip
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
     assert_equal "M", cell_1.render
   end
 
   def test_it_renders_a_period_in_an_occupied_cell
+    skip
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
@@ -95,13 +109,16 @@ class CellTest < Minitest::Test
   end
 
   def test_optional_boolean_for_showing_a_ship
+    skip
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
     cell_2.render(true)
     assert_equal "S", cell_2.render(true)
   end
+
   def test_it_renders_a_hit
+    skip
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
@@ -111,6 +128,7 @@ class CellTest < Minitest::Test
   end
 
   def test_it_renders_a_sunk_ship
+    skip
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
