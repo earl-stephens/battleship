@@ -40,6 +40,8 @@ class Cell
       "M"
     elsif show_ship == true && empty? == false
       "S"
+    elsif @fired_upon == true && empty? == false
+      "H"
     else
       "."
     end

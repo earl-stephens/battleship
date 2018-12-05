@@ -100,7 +100,14 @@ class CellTest < Minitest::Test
     cell_2.place_ship(cruiser)
     cell_2.render(true)
     assert_equal "S", cell_2.render(true)
-    
+  end
+  def test_it_renders_a_hit
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    cell_2.render
+    assert_equal "H", cell_2.render
   end
 
 end
