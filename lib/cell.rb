@@ -11,7 +11,9 @@ class Cell
 
   def empty?
     if @ship == nil
-    return true
+      return true
+    else
+      return false
     end
   end
 
@@ -25,8 +27,20 @@ class Cell
 
   def fire_upon
     @fired_upon = true
+    # binding.pry
+    if self.empty? == false
     @ship.hit
     @ship.health
+    end
+  end
+
+  def render
+    # binding.pry
+    if @fired_upon == true && empty? == true
+      "M"
+    else
+    "."
+    end
   end
 
 end
