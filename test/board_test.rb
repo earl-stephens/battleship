@@ -28,4 +28,10 @@ class BoardTest < Minitest::Test
     assert_equal 16, board.cell_hash.length
   end
 
+  def test_cell_hash_key_references_a_cell_object
+    board = Board.new
+    board.cells
+    assert_instance_of Cell, board.cell_hash["A2"]
+  end
+
 end
