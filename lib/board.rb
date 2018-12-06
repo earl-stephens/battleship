@@ -18,9 +18,7 @@ class Board
   end
 
   def valid_coordinate?(coordinate_arg)
-    @key_array.any? do |key|
-      true
-    end
+    @key_array.any? {|key| key == coordinate_arg}
   end
 
 end

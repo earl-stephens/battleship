@@ -39,9 +39,22 @@ class BoardTest < Minitest::Test
     board.cells
 
     board.valid_coordinate?("A1")
-    
+
     assert_equal true, board.valid_coordinate?("A1")
+
+    board.valid_coordinate?("D4")
+
+    assert_equal true, board.valid_coordinate?("D4")
   end
 
+  def test_an_invalid_coordinate_letter_is_invalid
+    skip
+    board = Board.new
+    board.cells
+
+    board.valid_coordinate?("F1")
+
+    assert_equal false, board.valid_coordinate?("F1")
+  end
 
 end
