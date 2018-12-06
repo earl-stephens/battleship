@@ -22,4 +22,10 @@ class BoardTest < Minitest::Test
     assert_equal ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"], board.key_array
   end
 
+  def test_cell_hash_has_16_key_value_pairs
+    board = Board.new
+    board.cells
+    assert_equal 16, board.cell_hash.length
+  end
+
 end
