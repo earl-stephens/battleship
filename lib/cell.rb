@@ -30,43 +30,12 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    # binding.pry
     if self.empty? == false
     @ship.hit
     @ship.health
     end
   end
 
-  # def render(show_ship = false)
-  #   # binding.pry
-  #   if empty? == true
-  #     if @fired_upon == false
-  #       "."
-  #     else
-  #       "M"
-  #     end
-  #   else
-  #     if @fired_upon == true && ship.sunk? == true
-  #       "X"
-  #     else
-  #       "H"
-  #     end
-  #   end
-    # if @ship.sunk?
-    #   "X"
-    # if @fired_upon == true && empty? == true
-    #   "M"
-    # elsif show_ship == true && empty? == false
-    #   "S"
-    # elsif @fired_upon == true && empty? == false
-    #   if ship.sunk? == true
-    #     "X"
-    #   else
-    #     "H"
-    #   end
-    # else
-    #   "."
-    # end
     def render
       if empty? == true
         render_empty

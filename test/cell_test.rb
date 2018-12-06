@@ -60,7 +60,6 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
     cell.fire_upon
-    # binding.pry
     assert_equal 2, cell.ship.health
   end
 
