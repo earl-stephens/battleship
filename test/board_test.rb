@@ -48,7 +48,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_an_invalid_coordinate_letter_is_invalid
-    skip
+    # skip
     board = Board.new
     board.cells
 
