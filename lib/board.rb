@@ -23,6 +23,8 @@ class Board
 
   def valid_placement?(ship_arg, coordinates_arg)
     if ship_arg.length == coordinates_arg.length
+      # binding.pry
+      true
     else
       false
     end
