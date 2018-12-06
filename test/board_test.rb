@@ -17,4 +17,9 @@ class BoardTest < Minitest::Test
     assert_empty(board.cell_hash)
   end
 
+  def test_there_is_an_array_of_keys
+    board = Board.new
+    assert_equal ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"], board.key_array
+  end
+
 end
