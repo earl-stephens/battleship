@@ -31,18 +31,20 @@ class Cell
   def fire_upon
     @fired_upon = true
     if self.empty? == false
-    @ship.hit
-    @ship.health
+      @ship.hit
+    # not sure why the below code is here
+    #Megan mentioned it
+    # @ship.health
     end
   end
 
-    def render
-      if empty? == true
-        render_empty
-      else
-        render_occupied
-      end
+  def render
+    if empty? == true
+      render_empty
+    else
+      render_occupied
     end
+  end
 
     def render_empty
       if fired_upon? == true
