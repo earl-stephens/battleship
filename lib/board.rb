@@ -13,8 +13,14 @@ class Board
     @key_array.each do |key|
       @cell_hash[key] = Cell.new(key)
     end
-    binding.pry
+    # binding.pry
     return @cell_hash
+  end
+
+  def valid_coordinate?(coordinate_arg)
+    @key_array.any? do |key|
+      true
+    end
   end
 
 end
