@@ -41,16 +41,20 @@ class Board
 
   def check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
     # if loop that call two methods below
-    split_coordinate_array = []
+    # put below method into own method
+      split_coordinate_array = []
       coordinates_arg.each do |coordinate|
         split_coordinate_array << coordinate.split(//)
       end
-      binding.pry
-    # if
-    # elsif
-    # else
-    #   false
-    # end
+      # testing vertical placement loop
+        if split_coordinate_array[0][0] == split_coordinate_array[1][0] == split_coordinate_array[2][0]
+          puts horizontal
+          check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+        else split_coordinate_array[0][1] == split_coordinate_array[1][1] == split_coordinate_array[2][1]
+          puts vertical
+          check_for_consecutive_vertical(ship_arg, coordinates_arg)
+
+        end
   end
 
   def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
