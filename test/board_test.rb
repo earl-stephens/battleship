@@ -78,7 +78,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_placement_checks_coordinates_and_ship_length_are_not_equal
-# skip
+    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -94,7 +94,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_placement_checks_coordinates_and_ship_length_are_equal
-# skip
+    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -109,6 +109,27 @@ class BoardTest < Minitest::Test
     assert_equal true, board.valid_placement?(submarine, ["C2", "D2"])
   end
 
+  def test_valid_placement_checks_consecutive_coordinates
+    skip
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
 
+    board.valid_placement?(cruiser, ["A1", "A2", "A4"])
+
+    assert_equal false, board.valid_placement?(cruiser, ["A1", "A2", "A4"])
+  end
+
+  def test_check_for_horizontal_and_vertical
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+
+    board.valid_placement?(cruiser, ["A1", "B2", "A4"])
+
+    assert_equal false, board.valid_placement?(cruiser, ["A1", "B2", "A4"])
+  end
 
 end

@@ -21,13 +21,48 @@ class Board
     @key_array.any? {|key| key == coordinate_arg}
   end
 
+# CEO method
   def valid_placement?(ship_arg, coordinates_arg)
+    valid_ship_length?(ship_arg, coordinates_arg)
+    consecutive_coordinates?(ship_arg, coordinates_arg)
+  end
+
+  def valid_ship_length?(ship_arg, coordinates_arg)
     if ship_arg.length == coordinates_arg.length
-      # binding.pry
       true
     else
       false
     end
+  end
+
+  def consecutive_coordinates?(ship_arg, coordinates_arg)
+    check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
+  end
+
+  def check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
+    # if loop that call two methods below
+    # put below method into own method
+      split_coordinate_array = []
+      coordinates_arg.each do |coordinate|
+        split_coordinate_array << coordinate.split(//)
+      end
+      # testing vertical placement loop
+        if split_coordinate_array[0][0] == split_coordinate_array[1][0] == split_coordinate_array[2][0]
+          puts horizontal
+          check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+        else split_coordinate_array[0][1] == split_coordinate_array[1][1] == split_coordinate_array[2][1]
+          puts vertical
+          check_for_consecutive_vertical(ship_arg, coordinates_arg)
+
+        end
+  end
+
+  def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+
+  end
+
+  def check_for_consecutive_vertical(ship_arg, coordinates_arg)
+
   end
 
 end
