@@ -40,21 +40,30 @@ class Board
   end
 
   def check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
+      split_the_coordinate_array_for_letters(ship_arg, coordinates_arg)
     # if loop that call two methods below
     # put below method into own method
-      split_coordinate_array = []
-      coordinates_arg.each do |coordinate|
-        split_coordinate_array << coordinate.split(//)
-      end
+      # split_coordinate_array = []
+      # coordinates_arg.each do |coordinate|
+      #   split_coordinate_array << coordinate.split(//)
+      # end
       # testing vertical placement loop
-        if split_coordinate_array[0][0] == split_coordinate_array[1][0] == split_coordinate_array[2][0]
-          puts horizontal
-          check_for_consecutive_horizontal(ship_arg, coordinates_arg)
-        else split_coordinate_array[0][1] == split_coordinate_array[1][1] == split_coordinate_array[2][1]
-          puts vertical
-          check_for_consecutive_vertical(ship_arg, coordinates_arg)
+        # if split_coordinate_array[0][0] == split_coordinate_array[1][0] == split_coordinate_array[2][0]
+        #   puts horizontal
+        #   check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+        # else split_coordinate_array[0][1] == split_coordinate_array[1][1] == split_coordinate_array[2][1]
+        #   puts vertical
+        #   check_for_consecutive_vertical(ship_arg, coordinates_arg)
+        #
+        # end
+  end
 
-        end
+  def split_the_coordinate_array_for_letters(ship_arg, coordinates_arg)
+    split_coordinate_array = []
+    3.times do |coordinate|
+      split_coordinate_array << coordinates_arg[coordinate][0]
+    end
+    return split_coordinate_array
   end
 
   def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
