@@ -22,12 +22,32 @@ class Board
   end
 
   def valid_placement?(ship_arg, coordinates_arg)
+    valid_ship_length?(ship_arg, coordinates_arg)
+    consecutive_coordinates?(ship_arg, coordinates_arg)
+  end
+
+  def valid_ship_length?(ship_arg, coordinates_arg)
     if ship_arg.length == coordinates_arg.length
-      # binding.pry
       true
     else
       false
     end
+  end
+
+  def consecutive_coordinates?(ship_arg, coordinates_arg)
+    check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
+  end
+
+  def check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
+    # if loop that call two methods below
+  end
+
+  def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+
+  end
+
+  def check_for_consecutive_vertical(ship_arg, coordinates_arg)
+
   end
 
 end
