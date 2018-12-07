@@ -27,7 +27,7 @@ class CellTest < Minitest::Test
   def test_if_a_cell_is_empty
     # skip
     cell = Cell.new("B4")
-    assert cell.empty?
+    assert_equal true, cell.empty?
   end
 
   def test_if_a_ship_is_placed
@@ -43,7 +43,7 @@ class CellTest < Minitest::Test
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
-    refute cell.empty?
+    assert_equal false, cell.empty?
   end
 
   def test_that_ship_was_fired_upon
@@ -51,7 +51,7 @@ class CellTest < Minitest::Test
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
-    refute cell.fired_upon?
+    assert_equal false, cell.fired_upon?
   end
 
   def test_does_fired_upon_affect_ship_health
@@ -60,7 +60,6 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
     cell.fire_upon
-    # binding.pry
     assert_equal 2, cell.ship.health
   end
 
