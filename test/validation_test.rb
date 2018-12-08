@@ -47,7 +47,7 @@ def test_for_consecutive_coordinates_sad_path
 
   valid_object.valid_placement?(submarine, ["A1", "C1"])
 
-  assert_equal false, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(submarine, ["A1", "C1"])
+  assert_equal false, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(submarine)
 end
 
 def test_for_consecutive_coordinates_happy_path
@@ -59,7 +59,7 @@ def test_for_consecutive_coordinates_happy_path
 
   valid_object.valid_placement?(cruiser, ["A1", "B1", "C1"])
 
-  assert_equal true, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(cruiser, ["A1", "B1", "C1"])
+  assert_equal true, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(cruiser)
 end
 
 def test_for_consecutive_coordinates_diagonal
@@ -71,7 +71,7 @@ def test_for_consecutive_coordinates_diagonal
 
   valid_object.valid_placement?(cruiser, ["A1", "B2", "C3"])
 
-  assert_equal false, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(cruiser, ["A1", "B2", "C3"])
+  assert_equal false, valid_object.validate_consecutive_coordinates_when_placing_the_ship?(cruiser)
 end
 
 def test_for_splitting_the_coordinate_array
@@ -169,6 +169,30 @@ def test_for_consecutive_vertical_coordinates_sad_path
   valid_object.valid_placement?(cruiser, ["B4", "D4", "A4"])
 
   assert_equal false, valid_object.check_for_consecutive_vertical
+end
+
+def test_coordinates_cant_be_diagonal_for_cruiser
+  # skip
+  cruiser = Ship.new("Cruiser", 3)
+  board = Board.new
+  board.cells
+  valid_object = Validation.new
+
+  valid_object.valid_placement?(cruiser, ["A1", "B2", "C3"])
+
+  assert_equal false, valid_object.valid_placement?(cruiser, ["A1", "B2", "C3"])
+end
+
+def test_coordinates_cant_be_diagonal_for_submarine
+  # skip
+  submarine = Ship.new("Submarine", 2)
+  board = Board.new
+  board.cells
+  valid_object = Validation.new
+
+  valid_object.valid_placement?(submarine, ["C2", "D3"])
+
+  assert_equal false, valid_object.valid_placement?(submarine, ["C2", "D3"])
 end
 
 end

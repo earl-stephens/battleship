@@ -79,9 +79,10 @@ class BoardTest < Minitest::Test
 
 
 
-  
+
 
   def test_the_split_coordinate_array_method_for_cruiser
+    skip
     cruiser = Ship.new("Cruiser", 3)
     board = Board.new
     board.cells
@@ -92,6 +93,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_the_split_coordinate_array_method_for_sub
+    skip
     submarine = Ship.new("Submarine", 2)
     board = Board.new
     board.cells
