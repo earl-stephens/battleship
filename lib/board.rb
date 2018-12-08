@@ -1,4 +1,6 @@
 require 'pry'
+# require './lib/validation'
+# require './lib/cell'
 
 class Board
   attr_reader :cell_hash,
@@ -24,6 +26,7 @@ class Board
   # CEO Method
   def place(ship_arg, coordinate_arg)
     valid_coordinate?(coordinate_arg)
+    run_valid_placement?(ship_arg, coordinate_arg)
   end
 
   def valid_coordinate?(coordinate_arg)
@@ -39,6 +42,10 @@ class Board
     else
       return true
     end
+  end
+
+  def run_valid_placement?(ship_arg, coordinate_arg)
+
   end
 
 # CEO method

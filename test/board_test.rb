@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
-require './lib/validation'
+# require './lib/validation'
 require 'pry'
 
 class BoardTest < Minitest::Test
@@ -97,6 +97,17 @@ class BoardTest < Minitest::Test
 
     assert_equal true, board.valid_coordinate?(["B2", "B3", "B4"])
 
+  end
+
+  def test_valid_placement_with_validation_object
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+    board.place(cruiser, ["B2", "B3", "B4"])
+
+    assert_equal true, board.valid_object.valid_placement?(cruiser,["B2", "B3", "B4"])
   end
 
 
