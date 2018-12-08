@@ -21,8 +21,24 @@ class Board
     return @cell_hash
   end
 
+  # CEO Method
+  def place(ship_arg, coordinate_arg)
+    valid_coordinate?(coordinate_arg)
+  end
+
   def valid_coordinate?(coordinate_arg)
-    @key_array.any? {|key| key == coordinate_arg}
+    temporary_array = []
+    # binding.pry
+    coordinate_arg.each do |coordinate|
+      temporary_array << @key_array.any? {|key| key == coordinate}
+      # binding.pry
+    end
+    if temporary_array.any? {|value| value == false}
+      # binding.pry
+      return false
+    else
+      return true
+    end
   end
 
 # CEO method
