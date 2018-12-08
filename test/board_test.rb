@@ -77,6 +77,30 @@ class BoardTest < Minitest::Test
     assert_equal false, board.valid_coordinate?("F22")
   end
 
+
+
+  
+
+  def test_the_split_coordinate_array_method_for_cruiser
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
+
+    board.valid_placement?(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal [["A", "1"], ["A", "2"], ["A", "3"]], board.split_coordinate_array
+  end
+
+  def test_the_split_coordinate_array_method_for_sub
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+
+    board.valid_placement?(submarine, ["C3", "B3"])
+
+    assert_equal [["C", "3"], ["B", "3"]],  board.split_coordinate_array
+  end
+
   def test_valid_placement_checks_coordinates_and_ship_length_are_not_equal
     skip
     cruiser = Ship.new("Cruiser", 3)
@@ -110,6 +134,19 @@ class BoardTest < Minitest::Test
   end
 
   def test_the_split_coordinate_array_for_letters_method
+    skip
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
+
+    board.valid_placement?(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal ["A", "A", "A"], board.split_coordinate_letter_array
+  end
+
+  def test_the_split_coordinate_array_for_numbers_method
+    skip
+
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -118,9 +155,8 @@ class BoardTest < Minitest::Test
 
     board.check_for_horizontal_and_vertical(cruiser, ["A1", "A2", "A3"])
 
-    assert_equal ["A", "A", "A"], board.split_the_coordinate_array_for_letters(cruiser, ["A1", "A2", "A3"])
+    assert_equal ["1", "2", "3"], board.split_the_coordinate_array_for_numbers(cruiser, ["A1", "A2", "A3"])
   end
-
 
   def test_valid_placement_checks_consecutive_coordinates
     skip

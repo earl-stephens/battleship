@@ -2,11 +2,15 @@ require 'pry'
 
 class Board
   attr_reader :cell_hash,
-              :key_array
+              :key_array,
+              :split_coordinate_array,
+              :split_coordinate_letter_array
 
   def initialize
     @cell_hash = {}
     @key_array = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
+    @split_coordinate_array = []
+    @split_coordinate_letter_array = []
   end
 
   def cells
@@ -36,11 +40,15 @@ class Board
   end
 
   def consecutive_coordinates?(ship_arg, coordinates_arg)
+    split_coordinate_array_method(ship_arg, coordinates_arg)
     check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
   end
 
   def check_for_horizontal_and_vertical(ship_arg, coordinates_arg)
-      split_the_coordinate_array_for_letters(ship_arg, coordinates_arg)
+      # split_coordinate_array_method(ship_arg, coordinates_arg)
+      # split_the_coordinate_array_for_letters(ship_arg)
+      # split_the_coordinate_array_for_letters(ship_arg)
+      # split_the_coordinate_array_for_numbers(ship_arg)
     # if loop that call two methods below
     # put below method into own method
       # split_coordinate_array = []
@@ -58,20 +66,36 @@ class Board
         # end
   end
 
-  def split_the_coordinate_array_for_letters(ship_arg, coordinates_arg)
-    split_coordinate_array = []
+  def split_coordinate_array_method(ship_arg, coordinates_arg)
+      coordinates_arg.each do |coordinate|
+        @split_coordinate_array << coordinate.split(//)
+        end
+      return @split_coordinate_array
+  end
+
+
+  def split_the_coordinate_array_for_letters(ship_arg)
+# binding.pry
     3.times do |coordinate|
-      split_coordinate_array << coordinates_arg[coordinate][0]
+      # binding.pry
+      @split_coordinate_letter_array << @split_coordinate_array[coordinate][0]
     end
-    return split_coordinate_array
+    return @split_coordinate_letter_array
   end
 
-  def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
-
+  def split_the_coordinate_array_for_numbers(ship_arg)
+    split_coordinate_number_array = []
+    3.times do |coordinate|
+      split_coordinate_number_array << @split_coordinate_array[coordinate][0]
+    end
+    return split_coordinate_number_array
   end
-
-  def check_for_consecutive_vertical(ship_arg, coordinates_arg)
-
-  end
+  # def check_for_consecutive_horizontal(ship_arg, coordinates_arg)
+  #
+  # end
+  #
+  # def check_for_consecutive_vertical(ship_arg, coordinates_arg)
+  #
+  # end
 
 end
