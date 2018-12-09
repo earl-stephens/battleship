@@ -97,9 +97,9 @@ class CellTest < Minitest::Test
     cell_1 = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell_1.place_ship(cruiser)
-    cell_1.show_ship = true
-    cell_1.render
-    assert_equal "S", cell_1.render
+    # cell_1.show_ship = true
+    cell_1.render(true)
+    assert_equal "S", cell_1.render(true)
   end
 
   def test_render_occupied_returns_an_h

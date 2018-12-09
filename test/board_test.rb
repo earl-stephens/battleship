@@ -157,6 +157,17 @@ class BoardTest < Minitest::Test
     assert_equal true, board.overlap?(submarine, ["A3", "A4"])
   end
 
+  def test_it_renders_a_board
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+    show_ship = false
+    assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render(show_ship)
+  end
+
   # def test_for_overlapping_ships_without_overlap
   #   # skip
   #   cruiser = Ship.new("Cruiser", 3)
