@@ -106,10 +106,23 @@ class BoardTest < Minitest::Test
     board = Board.new
     board.cells
     board.place(cruiser, ["B2", "B3", "B4"])
+    # binding.pry
 
     assert_equal true, board.run_valid_placement?(cruiser,["B2", "B3", "B4"])
   end
 
+  def test_placing_a_ship_in_a_cell
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal cruiser, board.cell_hash["A1"].ship
+    assert_equal cruiser, board.cell_hash["A2"].ship
+    assert_equal cruiser, board.cell_hash["A3"].ship
+  end
 
 end
 

@@ -27,6 +27,7 @@ class Board
   def place(ship_arg, coordinate_arg)
     valid_coordinate?(coordinate_arg)
     run_valid_placement?(ship_arg, coordinate_arg)
+    place_ship_in_cells(ship_arg, coordinate_arg)
   end
 
   def valid_coordinate?(coordinate_arg)
@@ -48,6 +49,15 @@ class Board
     valid_object = Validation.new
     valid_object.valid_placement?(ship_arg, coordinate_arg)
   end
+
+  def place_ship_in_cells(ship_arg, coordinate_arg)
+    coordinate_arg.length.times do |counter|
+    @cell_hash[coordinate_arg[counter - 1]].place_ship(ship_arg)
+    end
+    # binding.pry
+  end
+
+end
 
 # CEO method
   # def valid_placement?(ship_arg, coordinates_arg)
@@ -121,5 +131,3 @@ class Board
   # def check_for_consecutive_vertical(ship_arg, coordinates_arg)
   #
   # end
-
-end
