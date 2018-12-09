@@ -1,4 +1,4 @@
-# require './lib/board'
+require './lib/board'
 require 'pry'
 
 class Validation
@@ -20,17 +20,35 @@ class Validation
 
 # CEO method
   def valid_placement?(ship_arg, coordinate_arg)
+    # if overlap?(ship_arg, coordinate_arg) == true
+    #   return false
+    # else
     valididate_ship_length_and_coordinate_length?(ship_arg, coordinate_arg)
     #this next method isn't used in the decision tree
     break_down_the_coordinate_array(ship_arg, coordinate_arg)
     validate_consecutive_coordinates_when_placing_the_ship?(ship_arg)
+    # binding.pry
     #decision tree to return t/f for valid_placement?
-    if valididate_ship_length_and_coordinate_length?(ship_arg, coordinate_arg) == true && validate_consecutive_coordinates_when_placing_the_ship?(ship_arg) == true
-      return true
-    else
-      return false
-    end
+      if valididate_ship_length_and_coordinate_length?(ship_arg, coordinate_arg) == true && validate_consecutive_coordinates_when_placing_the_ship?(ship_arg) == true
+        return true
+      else
+        return false
+      end
+    # end
   end
+
+  # def overlap?(ship_arg, coordinate_arg)
+  #   binding.pry
+  #   temporary_array = []
+  #   coordinate_arg.length.times do |counter|
+  #     temporary_array << board.cell_hash[coordinate_arg[counter - 1]].empty?
+  #   end
+  #   if temp_array.any? {|answer| answer = true}
+  #     return false
+  #   else
+  #     return true
+  #   end
+  # end
 
   def valididate_ship_length_and_coordinate_length?(ship_arg, coordinate_arg)
     if ship_arg.length == coordinate_arg.length

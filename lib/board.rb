@@ -26,6 +26,7 @@ class Board
   # CEO Method
   def place(ship_arg, coordinate_arg)
     valid_coordinate?(coordinate_arg)
+    overlap?(ship_arg, coordinate_arg)
     run_valid_placement?(ship_arg, coordinate_arg)
     place_ship_in_cells(ship_arg, coordinate_arg)
   end
@@ -48,6 +49,22 @@ class Board
   def run_valid_placement?(ship_arg, coordinate_arg)
     valid_object = Validation.new
     valid_object.valid_placement?(ship_arg, coordinate_arg)
+    # binding.pry
+  end
+
+  def overlap?(ship_arg, coordinate_arg)
+    # binding.pry
+    temporary_array = []
+    coordinate_arg.length.times do |counter|
+      # binding.pry
+      temporary_array << @cell_hash[coordinate_arg[counter]].empty?
+    end
+    # binding.pry
+    if temporary_array.any? {|answer| answer = true}
+      return true
+    else
+      return false
+    end
   end
 
   def place_ship_in_cells(ship_arg, coordinate_arg)
