@@ -90,13 +90,21 @@ class BoardTest < Minitest::Test
   def test_valid_placement_after_calling_place_method
     # skip
     cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
     board = Board.new
     board.cells
     board.place(cruiser, ["B2", "B3", "B4"])
 
-    assert_equal true, board.valid_coordinate?(["B2", "B3", "B4"])
+    assert_equal true, board.run_valid_placement?(cruiser, ["B2", "B3", "B4"])
+  end
 
+  def test_valid_placement_after_calling_place_method_with_bad_coordinates
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
+    board.place(cruiser, ["B2", "C3", "D4"])
+
+    assert_equal false, board.run_valid_placement?(cruiser, ["B2", "C3", "D4"])
   end
 
   def test_valid_placement_with_validation_object
@@ -106,11 +114,62 @@ class BoardTest < Minitest::Test
     board = Board.new
     board.cells
     board.place(cruiser, ["B2", "B3", "B4"])
+    # binding.pry
 
-    assert_equal true, board.valid_object.valid_placement?(cruiser,["B2", "B3", "B4"])
+    assert_equal true, board.run_valid_placement?(cruiser,["B2", "B3", "B4"])
   end
 
+  def test_placing_a_ship_in_a_cell
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
 
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal cruiser, board.cell_hash["A1"].ship
+    assert_equal cruiser, board.cell_hash["A2"].ship
+    assert_equal cruiser, board.cell_hash["A3"].ship
+  end
+
+  def test_that_the_same_ship_is_in_each_of_its_cells
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal true, board.check_same_ship?(cruiser, ["A1", "A2", "A3"])
+  end
+
+  def test_for_overlapping_ships
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    board.cells
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+    board.place(submarine, ["A3", "A4"])
+
+    assert_equal true, board.overlap?(submarine, ["A3", "A4"])
+  end
+
+  # def test_for_overlapping_ships_without_overlap
+  #   # skip
+  #   cruiser = Ship.new("Cruiser", 3)
+  #   submarine = Ship.new("Submarine", 2)
+  #   board = Board.new
+  #   board.cells
+  #
+  #   # board.place(cruiser, ["A1", "A2", "A3"])
+  #   board.place(submarine, ["B3", "B4"])
+  #
+  #   assert_equal false, board.overlap?(submarine, ["B3", "B4"])
+  # end
+#
 end
 
 
