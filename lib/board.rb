@@ -57,6 +57,18 @@ class Board
     # binding.pry
   end
 
+  def check_same_ship?(ship_arg, coordinate_arg)
+temp_array = []
+coordinate_arg.each do |coordinate|
+  temp_array << @cell_hash[coordinate].ship
+end
+if temp_array.uniq.length == 1
+  return true
+else
+  return false
+end
+  end
+
 end
 
 # CEO method

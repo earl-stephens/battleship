@@ -124,6 +124,17 @@ class BoardTest < Minitest::Test
     assert_equal cruiser, board.cell_hash["A3"].ship
   end
 
+  def test_that_the_same_ship_is_in_each_of_its_cells
+    # skip
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    board.cells
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    assert_equal true, board.check_same_ship?(cruiser, ["A1", "A2", "A3"])
+  end
+
 end
 
 
