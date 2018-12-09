@@ -107,7 +107,7 @@ class BoardTest < Minitest::Test
     board.cells
     board.place(cruiser, ["B2", "B3", "B4"])
 
-    assert_equal true, board.valid_object.valid_placement?(cruiser,["B2", "B3", "B4"])
+    assert_equal true, board.run_valid_placement?(cruiser,["B2", "B3", "B4"])
   end
 
 

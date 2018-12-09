@@ -1,6 +1,6 @@
 require 'pry'
-# require './lib/validation'
-# require './lib/cell'
+require './lib/validation'
+require './lib/cell'
 
 class Board
   attr_reader :cell_hash,
@@ -45,7 +45,8 @@ class Board
   end
 
   def run_valid_placement?(ship_arg, coordinate_arg)
-
+    valid_object = Validation.new
+    valid_object.valid_placement?(ship_arg, coordinate_arg)
   end
 
 # CEO method
