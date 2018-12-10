@@ -3,13 +3,13 @@ class Cell
               :ship,
               :fired_upon
 
-  attr_accessor :show_ship
+  # attr_accessor :show_ship
 
   def initialize(coordinate_arg)
     @coordinate = coordinate_arg
     @ship = nil
     @fired_upon = false
-    @show_ship = false
+    # @show_ship = show_ship
   end
 
   def empty?
@@ -38,11 +38,11 @@ class Cell
     end
   end
 
-  def render
+  def render(show_switch = false)
     if empty? == true
       render_empty
     else
-      render_occupied
+      render_occupied(show_switch)
     end
   end
 
@@ -54,9 +54,9 @@ class Cell
       end
     end
 
-    def render_occupied
+    def render_occupied(show_switch)
       if fired_upon? == false
-        if @show_ship == true
+        if show_switch == true
           "S"
         else
           "."
