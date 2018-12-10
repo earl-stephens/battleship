@@ -19,7 +19,8 @@ class GameTest < Minitest::Test
   def test_it_can_create_a_board
     game = Game.new
 
-    assert_instance_of Board, game.board
+    assert_instance_of Board, game.computer_board
+    assert_instance_of Board, game.human_board
   end
 
   def test_computer_create_ships
@@ -33,11 +34,12 @@ class GameTest < Minitest::Test
   end
 
   def test_computer_can_place_ships
+    # skip
     game = Game.new
-    game.board.place(computer_cruiser, ["A1", "A2", "A3"])
+    # game.computer_board.place(computer_cruiser, ["A1", "A2", "A3"])
+    game.place_computer_ship(cruiser, ["A1", "A2", "A3"])
 
-
-    assert_equal computer_cruiser, board.cell_hash["A1"].ship
+    assert_equal cruiser, game.place_computer_ship(cruiser, ["A1", "A2", "A3"])
   end
 
 end
