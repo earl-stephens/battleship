@@ -34,8 +34,10 @@ class GameTest < Minitest::Test
 
   def test_computer_can_place_ships
     game = Game.new
+    game.board.place(computer_cruiser, ["A1", "A2", "A3"])
 
-    assert
+
+    assert_equal computer_cruiser, board.cell_hash["A1"].ship
   end
 
 end

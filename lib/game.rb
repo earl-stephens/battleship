@@ -9,12 +9,14 @@ class Game
               :human_cruiser,
               :human_submarine
 
-  def initialize
+  def initialize #OH PETER!!!!!
     @board = Board.new
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_submarine = Ship.new("Submarine", 2)
     @human_cruiser = Ship.new("Cruiser", 3)
     @human_submarine = Ship.new("Submarine", 2)
+    @board.cells
+    # binding.pry
   end
 
   puts "Welcome to BATTLESHIP!"
@@ -27,9 +29,9 @@ class Game
     #   #start game with magic
     # end
 
-  def
-
-  end
+  # def
+  #
+  # end
 
 
 end
