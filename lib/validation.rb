@@ -146,5 +146,4 @@ class Validation
       false
     end
   end
-
 end
