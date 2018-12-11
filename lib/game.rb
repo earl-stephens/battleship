@@ -50,40 +50,71 @@ class Game
    else
      pick_vertical_coordinates(ship_arg)
    end
-   # binding.pry
  end
 
  def pick_horizontal_coordinates(ship_arg)
    if ship_arg.length == 3
-     pick_horizontal_number_position
+     pick_horizontal_number_position_cruiser
    else
-     puts "submarine"
+     pick_horizontal_number_position_submarine
    end
  end
 
- def pick_horizontal_number_position
+ def pick_horizontal_number_position_cruiser
    coordinate_array = []
    number_array = [[1, 2, 3], [2, 3, 4]]
    random_number_array = number_array.sample
- #   match_horizontal_numbers_to_letters
- # end
- #
- # def match_horizontal_numbers_to_letters
    letter_array = ["A", "B", "C", "D"]
    random_letter = letter_array.sample
-   random_number_array.each do |number|
-     coordinate_array << random_letter + number.to_s
-   end
-   binding.pry
-return coordinate_array
+     random_number_array.each do |number|
+       coordinate_array << random_letter + number.to_s
+     end
+   return coordinate_array
+ end
+
+ def pick_horizontal_number_position_submarine
+   coordinate_array = []
+   number_array = [[1, 2], [2, 3], [3, 4]]
+   random_number_array = number_array.sample
+   letter_array = ["A", "B", "C", "D"]
+   random_letter = letter_array.sample
+     random_number_array.each do |number|
+       coordinate_array << random_letter + number.to_s
+     end
+   return coordinate_array
  end
 
  def pick_vertical_coordinates(ship_arg)
    if ship_arg.length == 3
-     puts "cruiser"
-   else
-     puts "submarine"
+      pick_vertical_number_position_cruiser
+  else
+      pick_vertical_number_position_submarine
    end
+ end
+
+ def pick_vertical_number_position_cruiser
+   coordinate_array = []
+   letter_array = [["A", "B", "C"], ["B", "C", "D"]]
+   random_letter_array = letter_array.sample
+   number_array = [1, 2, 3, 4]
+   random_number = number_array.sample
+     random_letter_array.each do |letter|
+       coordinate_array << letter + random_number.to_s
+     end
+     binding.pry
+   return coordinate_array
+ end
+
+ def pick_vertical_number_position_submarine
+   coordinate_array = []
+   letter_array = [["A", "B"], ["B", "C"], ["C", "D"]]
+   random_letter_array = letter_array.sample
+   number_array = [1, 2, 3, 4]
+   random_number = number_array.sample
+     random_letter_array.each do |letter|
+       coordinate_array << letter + random_number.to_s
+     end
+   return coordinate_array
  end
 
  def setup_for_human
