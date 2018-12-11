@@ -37,6 +37,36 @@ class Game
  end
 
  def setup_for_computer
+   cruiser = Ship.new("Cruiser", 3)
+   pick_axis_of_evil(cruiser)
+
+ end
+
+ def pick_axis_of_evil(ship_arg)
+   axis_array = ["horizontal", "vertical"]
+   axis_array.sample
+   if axis_array.sample == "horizontal"
+     pick_horizontal_coordinates(ship_arg)
+   else
+     pick_vertical_coordinates(ship_arg)
+   end
+   # binding.pry
+ end
+
+ def pick_horizontal_coordinates(ship_arg)
+   if ship_arg.length == 3
+     puts "cruiser"
+   else
+     puts "submarine"
+   end
+ end
+
+ def pick_vertical_coordinates(ship_arg)
+   if ship_arg.length == 3
+     puts "cruiser"
+   else
+     puts "submarine"
+   end
  end
 
  def setup_for_human
