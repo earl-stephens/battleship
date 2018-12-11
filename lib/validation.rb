@@ -23,6 +23,7 @@ class Validation
     # if overlap?(ship_arg, coordinate_arg) == true
     #   return false
     # else
+    # binding.pry
     valididate_ship_length_and_coordinate_length?(ship_arg, coordinate_arg)
     #this next method isn't used in the decision tree
     break_down_the_coordinate_array(ship_arg, coordinate_arg)

@@ -53,7 +53,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_an_invalid_coordinate_letter_is_invalid
-    skip
+    # skip
     board = Board.new
     board.cells
 
@@ -63,7 +63,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_an_invalid_coordinate_number_is_invalid
-    skip
+    # skip
     board = Board.new
     board.cells
 
@@ -73,7 +73,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_an_invalid_coordinate_letter_and_number_is_invalid
-    skip
+    # skip
     board = Board.new
     board.cells
 
@@ -83,12 +83,12 @@ class BoardTest < Minitest::Test
   end
 
   # CEO method
-  def test_board_place_method
-
-  end
+  # def test_board_place_method
+  #
+  # end
 
   def test_valid_placement_after_calling_place_method
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     board = Board.new
     board.cells
@@ -98,7 +98,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_placement_after_calling_place_method_with_bad_coordinates
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     board = Board.new
     board.cells
@@ -108,7 +108,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_placement_with_validation_object
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -120,7 +120,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_placing_a_ship_in_a_cell
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     board = Board.new
     board.cells
@@ -133,7 +133,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_that_the_same_ship_is_in_each_of_its_cells
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -145,7 +145,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_for_overlapping_ships
-    skip
+    # skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new

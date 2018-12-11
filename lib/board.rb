@@ -25,6 +25,7 @@ class Board
 
   # CEO Method
   def place(ship_arg, coordinate_arg)
+    # binding.pry
     valid_coordinate?(coordinate_arg)
     overlap?(ship_arg, coordinate_arg)
     run_valid_placement?(ship_arg, coordinate_arg)
@@ -47,6 +48,7 @@ class Board
   end
 
   def run_valid_placement?(ship_arg, coordinate_arg)
+    # binding.pry
     valid_object = Validation.new
     valid_object.valid_placement?(ship_arg, coordinate_arg)
     # binding.pry
