@@ -55,10 +55,27 @@ class Game
 
  def pick_horizontal_coordinates(ship_arg)
    if ship_arg.length == 3
-     puts "cruiser"
+     pick_horizontal_number_position
    else
      puts "submarine"
    end
+ end
+
+ def pick_horizontal_number_position
+   coordinate_array = []
+   number_array = [[1, 2, 3], [2, 3, 4]]
+   random_number_array = number_array.sample
+ #   match_horizontal_numbers_to_letters
+ # end
+ #
+ # def match_horizontal_numbers_to_letters
+   letter_array = ["A", "B", "C", "D"]
+   random_letter = letter_array.sample
+   random_number_array.each do |number|
+     coordinate_array << random_letter + number.to_s
+   end
+   binding.pry
+return coordinate_array
  end
 
  def pick_vertical_coordinates(ship_arg)
