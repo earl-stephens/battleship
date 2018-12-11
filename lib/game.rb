@@ -41,8 +41,12 @@ class Game
 
   def get_coordinate_inputs
     puts "Please enter the 3 coordinates for a cruiser"
-    puts "Enter in the format 'A1, A2, A3'"
-    @coordinate_arg << gets.chomp
+    puts "Enter exactly in this format 'A1 A2 A3'"
+    input_variable = gets.chomp
+    # input_variable.split
+    @coordinate_arg = input_variable.split
+    # binding.pry
+    return @coordinate_arg
     # binding.pry
   end
 

@@ -36,10 +36,11 @@ class GameTest < Minitest::Test
   def test_computer_can_place_ships
     # skip
     game = Game.new
+    # cruiser = Ship.new("Cruiser", 3)
     # game.computer_board.place(computer_cruiser, ["A1", "A2", "A3"])
-    game.place_computer_ship(cruiser, ["A1", "A2", "A3"])
+    # game.place_ship(cruiser, ["A1", "A2", "A3"])
 
-    assert_equal cruiser, game.place_computer_ship(cruiser, ["A1", "A2", "A3"])
+    assert_equal , game.get_coordinate_inputs
   end
 
 end
