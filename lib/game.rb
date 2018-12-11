@@ -32,8 +32,11 @@ class Game
    if input == "q"
      exit
    end
-
+   setup_for_computer
    setup_for_human
+ end
+
+ def setup_for_computer
  end
 
  def setup_for_human
@@ -48,6 +51,8 @@ class Game
  end
 
   def get_cruiser_coordinate_inputs
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your two ships."
     puts "Please enter the 3 coordinates for a cruiser"
     puts "Enter exactly in this format 'A1 A2 A3'"
     input_variable = gets.chomp
