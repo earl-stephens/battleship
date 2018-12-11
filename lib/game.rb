@@ -34,25 +34,30 @@ class Game
    end
 
   get_coordinate_inputs
+  cruiser = Ship.new("Cruiser", 3)
+  place_ship(cruiser, coordinate_arg)
+
  end
 
   def get_coordinate_inputs
     puts "Please enter the 3 coordinates for a cruiser"
+    puts "Enter in the format 'A1, A2, A3'"
     @coordinate_arg << gets.chomp
-    binding.pry
-    puts @coordinate_arg
+    # binding.pry
+  end
+
+  def place_ship(ship_arg, coordinate_arg)
+    # binding.pry
+    coordinate_arg = @coordinate_arg
+    # cruiser = Ship.new("Cruiser", 3)
+    # submarine = Ship.new("Submarine", 2)
+    @human_board.place(ship_arg, coordinate_arg)
+    # binding.pry
   end
 
 
 
 
-
-  # def place_computer_ships(ship_arg, coordinate_arg)
-  #   cruiser = Ship.new("Cruiser", 3)
-  #   # submarine = Ship.new("Submarine", 2)
-  #   @computer_board.place(cruiser, coordinate_arg)
-  #   # binding.pry
-  # end
 
 
 end

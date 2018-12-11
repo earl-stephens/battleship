@@ -27,7 +27,9 @@ class Board
   def place(ship_arg, coordinate_arg)
     # binding.pry
     valid_coordinate?(coordinate_arg)
+    # binding.pry
     overlap?(ship_arg, coordinate_arg)
+    # binding.pry
     run_valid_placement?(ship_arg, coordinate_arg)
     place_ship_in_cells(ship_arg, coordinate_arg)
   end
