@@ -8,7 +8,8 @@ class Game
               :computer_cruiser,
               :computer_submarine,
               :human_cruiser,
-              :human_submarine
+              :human_submarine,
+              :coordinate_arg
 
   def initialize
     @computer_board = Board.new
@@ -19,25 +20,39 @@ class Game
     @human_submarine = Ship.new("Submarine", 2)
     @computer_board.cells
     @human_board.cells
-    # binding.pry
+    @coordinate_arg = []
   end
 
-  puts "Welcome to BATTLESHIP!"
-  puts "Enter p to play. Enter q to quit."
+ def main_menu
+   puts "Welcome to BATTLESHIP!"
+   puts "Enter p to play. Enter q to quit."
 
-  input = gets.chomp
-    if input == "q"
-       exit
-    else input == "p"
-      
-    end
+   input = gets.chomp
 
-  def place_computer_ships(ship_arg, coordinate_arg)
-    cruiser = Ship.new("Cruiser", 3)
-    # submarine = Ship.new("Submarine", 2)
-    @computer_board.place(cruiser, coordinate_arg)
-    # binding.pry
+   if input == "q"
+     exit
+   end
+
+  get_coordinate_inputs
+ end
+
+  def get_coordinate_inputs
+    puts "Please enter the 3 coordinates for a cruiser"
+    @coordinate_arg << gets.chomp
+    binding.pry
+    puts @coordinate_arg
   end
+
+
+
+
+
+  # def place_computer_ships(ship_arg, coordinate_arg)
+  #   cruiser = Ship.new("Cruiser", 3)
+  #   # submarine = Ship.new("Submarine", 2)
+  #   @computer_board.place(cruiser, coordinate_arg)
+  #   # binding.pry
+  # end
 
 
 end
