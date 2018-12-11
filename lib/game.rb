@@ -9,7 +9,8 @@ class Game
               :computer_submarine,
               :human_cruiser,
               :human_submarine,
-              :coordinate_arg
+              :coordinate_arg,
+              :coordinate_array
 
   def initialize
     @computer_board = Board.new
@@ -21,6 +22,7 @@ class Game
     @computer_board.cells
     @human_board.cells
     @coordinate_arg = []
+    @coordinate_array = []
   end
 
  def main_menu
@@ -39,6 +41,20 @@ class Game
  def setup_for_computer
    cruiser = Ship.new("Cruiser", 3)
    pick_axis_of_evil(cruiser)
+   coordinate_arg = @coordinate_array
+   binding.pry
+   place_ship(cruiser, coordinate_arg)
+   @computer_board.render(true)
+
+# copied from human setup
+   # get_cruiser_coordinate_inputs
+   # cruiser = Ship.new("Cruiser", 3)
+   # place_ship(cruiser, coordinate_arg)
+   # render(true)
+   # get_sub_coordinate_inputs
+   # submarine = Ship.new("Submarine", 2)
+   # place_ship(submarine, coordinate_arg)
+   # render(true)
 
  end
 
@@ -54,78 +70,77 @@ class Game
 
  def pick_horizontal_coordinates(ship_arg)
    if ship_arg.length == 3
-     pick_horizontal_number_position_cruiser
+     pick_horizontal_position_cruiser
    else
-     pick_horizontal_number_position_submarine
+     pick_horizontal_position_submarine
    end
  end
 
- def pick_horizontal_number_position_cruiser
-   coordinate_array = []
+ def pick_horizontal_position_cruiser
+   @coordinate_array = []
    number_array = [[1, 2, 3], [2, 3, 4]]
    random_number_array = number_array.sample
    letter_array = ["A", "B", "C", "D"]
    random_letter = letter_array.sample
      random_number_array.each do |number|
-       coordinate_array << random_letter + number.to_s
+       @coordinate_array << random_letter + number.to_s
      end
-   return coordinate_array
+   return @coordinate_array
  end
 
- def pick_horizontal_number_position_submarine
-   coordinate_array = []
+ def pick_horizontal_position_submarine
+   @coordinate_array = []
    number_array = [[1, 2], [2, 3], [3, 4]]
    random_number_array = number_array.sample
    letter_array = ["A", "B", "C", "D"]
    random_letter = letter_array.sample
      random_number_array.each do |number|
-       coordinate_array << random_letter + number.to_s
+       @coordinate_array << random_letter + number.to_s
      end
-   return coordinate_array
+   return @coordinate_array
  end
 
  def pick_vertical_coordinates(ship_arg)
    if ship_arg.length == 3
-      pick_vertical_number_position_cruiser
+      pick_vertical_position_cruiser
   else
-      pick_vertical_number_position_submarine
+      pick_vertical_position_submarine
    end
  end
 
- def pick_vertical_number_position_cruiser
-   coordinate_array = []
+ def pick_vertical_position_cruiser
+   @coordinate_array = []
    letter_array = [["A", "B", "C"], ["B", "C", "D"]]
    random_letter_array = letter_array.sample
    number_array = [1, 2, 3, 4]
    random_number = number_array.sample
      random_letter_array.each do |letter|
-       coordinate_array << letter + random_number.to_s
+       @coordinate_array << letter + random_number.to_s
      end
-     binding.pry
-   return coordinate_array
+   return @coordinate_array
  end
 
- def pick_vertical_number_position_submarine
-   coordinate_array = []
+ def pick_vertical_position_submarine
+   @coordinate_array = []
    letter_array = [["A", "B"], ["B", "C"], ["C", "D"]]
    random_letter_array = letter_array.sample
    number_array = [1, 2, 3, 4]
    random_number = number_array.sample
      random_letter_array.each do |letter|
-       coordinate_array << letter + random_number.to_s
+       @coordinate_array << letter + random_number.to_s
      end
-   return coordinate_array
+   return @coordinate_array
  end
 
  def setup_for_human
    get_cruiser_coordinate_inputs
    cruiser = Ship.new("Cruiser", 3)
    place_ship(cruiser, coordinate_arg)
-   render(true)
+   @human_board.render(true)
    get_sub_coordinate_inputs
    submarine = Ship.new("Submarine", 2)
    place_ship(submarine, coordinate_arg)
-   render(true)
+   @human_board.render(true)
  end
 
   def get_cruiser_coordinate_inputs

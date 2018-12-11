@@ -91,6 +91,7 @@ class Validation
   end
 
   def populate_the_check_array(ship_arg)
+    # binding.pry
     start_range_number = @array_of_letters[0].ord
     #what the expected end should be
     end_range_number = start_range_number + (ship_arg.length - 1)
