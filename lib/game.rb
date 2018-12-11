@@ -36,6 +36,7 @@ class Game
   get_coordinate_inputs
   cruiser = Ship.new("Cruiser", 3)
   place_ship(cruiser, coordinate_arg)
+  render(true)
 
  end
 
@@ -57,6 +58,10 @@ class Game
     # submarine = Ship.new("Submarine", 2)
     @human_board.place(ship_arg, coordinate_arg)
     # binding.pry
+  end
+
+  def render(show_ship)
+    @human_board.render(show_ship)
   end
 
 
