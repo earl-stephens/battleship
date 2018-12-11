@@ -33,16 +33,34 @@ class Game
      exit
    end
 
-  get_coordinate_inputs
-  cruiser = Ship.new("Cruiser", 3)
-  place_ship(cruiser, coordinate_arg)
-  render(true)
-
+   setup_for_human
  end
 
-  def get_coordinate_inputs
+ def setup_for_human
+   get_cruiser_coordinate_inputs
+   cruiser = Ship.new("Cruiser", 3)
+   place_ship(cruiser, coordinate_arg)
+   render(true)
+   get_sub_coordinate_inputs
+   submarine = Ship.new("Submarine", 2)
+   place_ship(submarine, coordinate_arg)
+   render(true)
+ end
+
+  def get_cruiser_coordinate_inputs
     puts "Please enter the 3 coordinates for a cruiser"
     puts "Enter exactly in this format 'A1 A2 A3'"
+    input_variable = gets.chomp
+    # input_variable.split
+    @coordinate_arg = input_variable.split
+    # binding.pry
+    return @coordinate_arg
+    # binding.pry
+  end
+
+  def get_sub_coordinate_inputs
+    puts "Please enter the 2 coordinates for a submarine"
+    puts "Enter exactly in this format 'C1 C2'"
     input_variable = gets.chomp
     # input_variable.split
     @coordinate_arg = input_variable.split
