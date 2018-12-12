@@ -23,6 +23,7 @@ class Game
     @human_board.cells
     @coordinate_arg = []
     @coordinate_array = []
+    @computer_cruiser_coordinates = []
   end
 
  def main_menu
@@ -47,6 +48,7 @@ class Game
    place_ship_computer(cruiser, coordinate_arg)
    # if @computer_board.placement_failure == true
    # end
+   @computer_cruiser_coordinates = @coordinate_array
    @computer_board.render(true)
  end
 
@@ -56,17 +58,26 @@ def setup_for_computer_submarine
    pick_axis_of_evil(submarine)
    # binding.pry
    coordinate_arg = @coordinate_array
+   # binding.pry
+   # @computer_cruiser_coordinates.each do |element|
+   #   if element == @coordinate_array[0]
+   #     setup_for_computer_submarine
+   #   elsif element == @coordinate_array[1]
+   #     setup_for_computer_submarine
+   #   else
+
+
    place_ship_computer(submarine, coordinate_arg)
+# end
    # binding.pry
    # if @computer_board.placement_failure == true
-   #   pick_axis_of_evil(submarine)
-   #   coordinate_arg = @coordinate_array
-   #   place_ship_computer(submarine, coordinate_arg)
-   #
+   #   return
+     # pick_axis_of_evil(submarine)
+     # coordinate_arg = @coordinate_array
+     # place_ship_computer(submarine, coordinate_arg)
    # else
    # binding.pry
      @computer_board.render(true)
-   # end
 
    puts "I have laid out my ships on the grid."
    puts "You now need to lay out your two ships."
@@ -111,7 +122,15 @@ def setup_for_computer_submarine
      random_number_array.each do |number|
        @coordinate_array << random_letter + number.to_s
      end
-   return @coordinate_array
+   @computer_cruiser_coordinates.each do |element|
+     if element == @coordinate_array[0]
+       pick_axis_of_evil
+     elsif element == @coordinate_array[1]
+       pick_axis_of_evil
+     else
+       return @coordinate_array
+    end
+  end
  end
 
  def pick_vertical_coordinates(ship_arg)
@@ -143,6 +162,15 @@ def setup_for_computer_submarine
      random_letter_array.each do |letter|
        @coordinate_array << letter + random_number.to_s
      end
+     @computer_cruiser_coordinates.each do |element|
+       if element == @coordinate_array[0]
+         pick_axis_of_evil
+       elsif element == @coordinate_array[1]
+         pick_axis_of_evil
+       else
+         return @coordinate_array
+      end
+    end
    return @coordinate_array
  end
 
