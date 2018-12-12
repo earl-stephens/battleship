@@ -12,7 +12,8 @@ class Game
               :coordinate_arg,
               :coordinate_array,
               :computer_cruiser_coordinates,
-              :human_cruiser_coordinates
+              :human_cruiser_coordinates,
+              :shot_input
 
   def initialize
     @computer_board = Board.new
@@ -43,6 +44,7 @@ class Game
    setup_for_computer_submarine
    setup_for_human
    render_board
+   player_shot
  end
 
  def setup_for_computer_cruiser
@@ -50,40 +52,15 @@ class Game
    pick_axis_of_evil(cruiser)
    coordinate_arg = @coordinate_array
    place_ship_computer(cruiser, coordinate_arg)
-   # if @computer_board.placement_failure == true
-   # end
    @computer_cruiser_coordinates = @coordinate_array
-   # @computer_board.render(true)
  end
 
 def setup_for_computer_submarine
    submarine = Ship.new("Submarine", 2)
    @coordinate_array = []
    pick_axis_of_evil(submarine)
-   # binding.pry
    coordinate_arg = @coordinate_array
-   # binding.pry
-   # @computer_cruiser_coordinates.each do |element|
-   #   if element == @coordinate_array[0]
-   #     setup_for_computer_submarine
-   #   elsif element == @coordinate_array[1]
-   #     setup_for_computer_submarine
-   #   else
-
-
    place_ship_computer(submarine, coordinate_arg)
-# end
-   # binding.pry
-   # if @computer_board.placement_failure == true
-   #   return
-     # pick_axis_of_evil(submarine)
-     # coordinate_arg = @coordinate_array
-     # place_ship_computer(submarine, coordinate_arg)
-   # else
-   # binding.pry
-
-     # @computer_board.render(true)
-
    puts "I have laid out my ships on the grid."
    puts "You now need to lay out your two ships."
  end
@@ -180,12 +157,8 @@ def setup_for_computer_submarine
  end
 
  def place_ship_computer(ship_arg, coordinate_arg)
-   # binding.pry
    coordinate_arg = coordinate_arg
-   # cruiser = Ship.new("Cruiser", 3)
-   # submarine = Ship.new("Submarine", 2)
    @computer_board.place(ship_arg, coordinate_arg)
-   # binding.pry
  end
 
  def render_computer(show_ship)
@@ -196,32 +169,25 @@ def setup_for_computer_submarine
    get_cruiser_coordinate_inputs
    cruiser = Ship.new("Cruiser", 3)
    place_ship(cruiser, coordinate_arg)
-   # @human_board.render(true)
    get_sub_coordinate_inputs
    submarine = Ship.new("Submarine", 2)
    place_ship(submarine, coordinate_arg)
-   # @human_board.render(true)
  end
 
   def get_cruiser_coordinate_inputs
     puts "Please enter the 3 coordinates for a cruiser"
     puts "Enter exactly in this format 'A1 A2 A3'"
     input_variable = gets.chomp
-    # input_variable.split
     @coordinate_arg = input_variable.split
     @human_cruiser_coordinates = @coordinate_arg
-    # binding.pry
     return @coordinate_arg
-    # binding.pry
   end
 
   def get_sub_coordinate_inputs
     puts "Please enter the 2 coordinates for a submarine"
     puts "Enter exactly in this format 'C1 C2'"
     input_variable = gets.chomp
-    # input_variable.split
     @coordinate_arg = input_variable.split
-    # binding.pry
     @human_cruiser_coordinates.each do |element|
       if element == @coordinate_arg[0]
         puts "Those are invalid coordinates. Please try again:"
@@ -233,18 +199,11 @@ def setup_for_computer_submarine
         return @coordinate_array
       end
    end
-    # binding.pry
-    # return @coordinate_arg
-    # binding.pry
   end
 
   def place_ship(ship_arg, coordinate_arg)
-    # binding.pry
     coordinate_arg = coordinate_arg
-    # cruiser = Ship.new("Cruiser", 3)
-    # submarine = Ship.new("Submarine", 2)
     @human_board.place(ship_arg, coordinate_arg)
-    # binding.pry
   end
 
   def render(show_ship)
@@ -257,5 +216,28 @@ def setup_for_computer_submarine
     puts "==============PLAYER BOARD=============="
     render(true)
   end
+
+  def player_shot
+    puts "Enter the coordinate for your shot:"
+    @shot_input = gets.chomp
+    validate_shot_input
+  end
+
+  def validate_shot_input
+    # binding.pry
+
+    if @human_board.key_array.find do |element|
+        element == @shot_input
+      end
+        show_shot_results
+      else
+        puts "Please enter a valid coordinate:"
+        @shot_input = gets.chomp
+        validate_shot_input
+      end
+  end
+
+def show_shot_results
+end
 
 end
