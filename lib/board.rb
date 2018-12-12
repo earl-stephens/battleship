@@ -96,8 +96,7 @@ class Board
     @cell_hash.each do |key, value|
       render_array << value.render(show_ship)
     end
-    # binding.!pry
-
+### change back to puts later
     puts " 1 2 3 4 \n" + "A " + render_array[0].to_s + " " + render_array[1].to_s + " " + render_array[2].to_s + " " + render_array[3].to_s + "\nB " + render_array[4].to_s + " " + render_array[5].to_s + " " + render_array[6].to_s + " " + render_array[7].to_s + "\nC " + render_array[8].to_s + " " + render_array[9].to_s + " " + render_array[10].to_s + " " + render_array[11].to_s + "\nD " + render_array[12].to_s + " " + render_array[13].to_s + " " + render_array[14].to_s + " " + render_array[15].to_s
   end
 

@@ -26,6 +26,7 @@ class Game
   end
 
  def main_menu
+   # binding.pry
    puts "Welcome to BATTLESHIP!"
    puts "Enter p to play. Enter q to quit."
 
@@ -42,20 +43,14 @@ class Game
    cruiser = Ship.new("Cruiser", 3)
    pick_axis_of_evil(cruiser)
    coordinate_arg = @coordinate_array
-   binding.pry
-   place_ship(cruiser, coordinate_arg)
+   place_ship_computer(cruiser, coordinate_arg)
    @computer_board.render(true)
 
-# copied from human setup
-   # get_cruiser_coordinate_inputs
-   # cruiser = Ship.new("Cruiser", 3)
-   # place_ship(cruiser, coordinate_arg)
-   # render(true)
-   # get_sub_coordinate_inputs
-   # submarine = Ship.new("Submarine", 2)
-   # place_ship(submarine, coordinate_arg)
-   # render(true)
-
+   submarine = Ship.new("Submarine", 2)
+   pick_axis_of_evil(submarine)
+   coordinate_arg = @coordinate_array
+   place_ship_computer(submarine, coordinate_arg)
+   @computer_board.render(true)
  end
 
  def pick_axis_of_evil(ship_arg)
@@ -132,6 +127,19 @@ class Game
    return @coordinate_array
  end
 
+ def place_ship_computer(ship_arg, coordinate_arg)
+   # binding.pry
+   coordinate_arg = coordinate_arg
+   # cruiser = Ship.new("Cruiser", 3)
+   # submarine = Ship.new("Submarine", 2)
+   @computer_board.place(ship_arg, coordinate_arg)
+   # binding.pry
+ end
+
+ def render_computer(show_ship)
+   @computer_board.render(show_ship)
+ end
+
  def setup_for_human
    get_cruiser_coordinate_inputs
    cruiser = Ship.new("Cruiser", 3)
@@ -169,7 +177,7 @@ class Game
 
   def place_ship(ship_arg, coordinate_arg)
     # binding.pry
-    coordinate_arg = @coordinate_arg
+    coordinate_arg = coordinate_arg
     # cruiser = Ship.new("Cruiser", 3)
     # submarine = Ship.new("Submarine", 2)
     @human_board.place(ship_arg, coordinate_arg)
@@ -179,10 +187,5 @@ class Game
   def render(show_ship)
     @human_board.render(show_ship)
   end
-
-
-
-
-
 
 end
