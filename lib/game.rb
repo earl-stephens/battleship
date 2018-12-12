@@ -9,7 +9,8 @@ class Game
               :computer_submarine,
               :human_cruiser,
               :human_submarine,
-              :coordinate_arg
+              :coordinate_arg,
+              :coordinate_array
 
   def initialize
     @computer_board = Board.new
@@ -21,9 +22,11 @@ class Game
     @computer_board.cells
     @human_board.cells
     @coordinate_arg = []
+    @coordinate_array = []
   end
 
  def main_menu
+   # binding.pry
    puts "Welcome to BATTLESHIP!"
    puts "Enter p to play. Enter q to quit."
 
@@ -39,7 +42,15 @@ class Game
  def setup_for_computer
    cruiser = Ship.new("Cruiser", 3)
    pick_axis_of_evil(cruiser)
+   coordinate_arg = @coordinate_array
+   place_ship_computer(cruiser, coordinate_arg)
+   @computer_board.render(true)
 
+   submarine = Ship.new("Submarine", 2)
+   pick_axis_of_evil(submarine)
+   coordinate_arg = @coordinate_array
+   place_ship_computer(submarine, coordinate_arg)
+   @computer_board.render(true)
  end
 
  def pick_axis_of_evil(ship_arg)
@@ -50,51 +61,94 @@ class Game
    else
      pick_vertical_coordinates(ship_arg)
    end
-   # binding.pry
  end
 
  def pick_horizontal_coordinates(ship_arg)
    if ship_arg.length == 3
-     pick_horizontal_number_position
+     pick_horizontal_position_cruiser
    else
-     puts "submarine"
+     pick_horizontal_position_submarine
    end
  end
 
- def pick_horizontal_number_position
-   coordinate_array = []
+ def pick_horizontal_position_cruiser
+   @coordinate_array = []
    number_array = [[1, 2, 3], [2, 3, 4]]
    random_number_array = number_array.sample
- #   match_horizontal_numbers_to_letters
- # end
- #
- # def match_horizontal_numbers_to_letters
    letter_array = ["A", "B", "C", "D"]
    random_letter = letter_array.sample
-   random_number_array.each do |number|
-     coordinate_array << random_letter + number.to_s
-   end
-   binding.pry
-return coordinate_array
+     random_number_array.each do |number|
+       @coordinate_array << random_letter + number.to_s
+     end
+   return @coordinate_array
+ end
+
+ def pick_horizontal_position_submarine
+   @coordinate_array = []
+   number_array = [[1, 2], [2, 3], [3, 4]]
+   random_number_array = number_array.sample
+   letter_array = ["A", "B", "C", "D"]
+   random_letter = letter_array.sample
+     random_number_array.each do |number|
+       @coordinate_array << random_letter + number.to_s
+     end
+   return @coordinate_array
  end
 
  def pick_vertical_coordinates(ship_arg)
    if ship_arg.length == 3
-     puts "cruiser"
-   else
-     puts "submarine"
+      pick_vertical_position_cruiser
+  else
+      pick_vertical_position_submarine
    end
+ end
+
+ def pick_vertical_position_cruiser
+   @coordinate_array = []
+   letter_array = [["A", "B", "C"], ["B", "C", "D"]]
+   random_letter_array = letter_array.sample
+   number_array = [1, 2, 3, 4]
+   random_number = number_array.sample
+     random_letter_array.each do |letter|
+       @coordinate_array << letter + random_number.to_s
+     end
+   return @coordinate_array
+ end
+
+ def pick_vertical_position_submarine
+   @coordinate_array = []
+   letter_array = [["A", "B"], ["B", "C"], ["C", "D"]]
+   random_letter_array = letter_array.sample
+   number_array = [1, 2, 3, 4]
+   random_number = number_array.sample
+     random_letter_array.each do |letter|
+       @coordinate_array << letter + random_number.to_s
+     end
+   return @coordinate_array
+ end
+
+ def place_ship_computer(ship_arg, coordinate_arg)
+   # binding.pry
+   coordinate_arg = coordinate_arg
+   # cruiser = Ship.new("Cruiser", 3)
+   # submarine = Ship.new("Submarine", 2)
+   @computer_board.place(ship_arg, coordinate_arg)
+   # binding.pry
+ end
+
+ def render_computer(show_ship)
+   @computer_board.render(show_ship)
  end
 
  def setup_for_human
    get_cruiser_coordinate_inputs
    cruiser = Ship.new("Cruiser", 3)
    place_ship(cruiser, coordinate_arg)
-   render(true)
+   @human_board.render(true)
    get_sub_coordinate_inputs
    submarine = Ship.new("Submarine", 2)
    place_ship(submarine, coordinate_arg)
-   render(true)
+   @human_board.render(true)
  end
 
   def get_cruiser_coordinate_inputs
@@ -123,7 +177,7 @@ return coordinate_array
 
   def place_ship(ship_arg, coordinate_arg)
     # binding.pry
-    coordinate_arg = @coordinate_arg
+    coordinate_arg = coordinate_arg
     # cruiser = Ship.new("Cruiser", 3)
     # submarine = Ship.new("Submarine", 2)
     @human_board.place(ship_arg, coordinate_arg)
@@ -133,10 +187,5 @@ return coordinate_array
   def render(show_ship)
     @human_board.render(show_ship)
   end
-
-
-
-
-
 
 end
