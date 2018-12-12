@@ -35,22 +35,41 @@ class Game
    if input == "q"
      exit
    end
-   setup_for_computer
+   setup_for_computer_cruiser
+   setup_for_computer_submarine
    setup_for_human
  end
 
- def setup_for_computer
+ def setup_for_computer_cruiser
    cruiser = Ship.new("Cruiser", 3)
    pick_axis_of_evil(cruiser)
    coordinate_arg = @coordinate_array
    place_ship_computer(cruiser, coordinate_arg)
+   # if @computer_board.placement_failure == true
+   # end
    @computer_board.render(true)
+ end
 
+def setup_for_computer_submarine
    submarine = Ship.new("Submarine", 2)
+   @coordinate_array = []
    pick_axis_of_evil(submarine)
+   # binding.pry
    coordinate_arg = @coordinate_array
    place_ship_computer(submarine, coordinate_arg)
-   @computer_board.render(true)
+   # binding.pry
+   # if @computer_board.placement_failure == true
+   #   pick_axis_of_evil(submarine)
+   #   coordinate_arg = @coordinate_array
+   #   place_ship_computer(submarine, coordinate_arg)
+   #
+   # else
+   # binding.pry
+     @computer_board.render(true)
+   # end
+
+   puts "I have laid out my ships on the grid."
+   puts "You now need to lay out your two ships."
  end
 
  def pick_axis_of_evil(ship_arg)
@@ -152,8 +171,6 @@ class Game
  end
 
   def get_cruiser_coordinate_inputs
-    puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your two ships."
     puts "Please enter the 3 coordinates for a cruiser"
     puts "Enter exactly in this format 'A1 A2 A3'"
     input_variable = gets.chomp

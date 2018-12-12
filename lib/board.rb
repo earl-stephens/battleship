@@ -4,7 +4,8 @@ require './lib/cell'
 
 class Board
   attr_reader :cell_hash,
-              :key_array
+              :key_array,
+              :placement_failure
               # :split_coordinate_array,
               # :split_coordinate_letter_array
 
@@ -27,10 +28,22 @@ class Board
   def place(ship_arg, coordinate_arg)
     # binding.pry
     valid_coordinate?(coordinate_arg)
+    if valid_coordinate?(coordinate_arg) == false
+      puts "valid coordinate? fails"
+      @placement_failure = true
+    end
     # binding.pry
     overlap?(ship_arg, coordinate_arg)
+    if overlap?(ship_arg, coordinate_arg) == true
+      puts "overlap? fails"
+      @placement_failure = true
+    end
     # binding.pry
     run_valid_placement?(ship_arg, coordinate_arg)
+    if run_valid_placement?(ship_arg, coordinate_arg) == false
+      puts "run valid placement fails"
+      @placement_failure = true
+    end
     place_ship_in_cells(ship_arg, coordinate_arg)
   end
 
@@ -64,7 +77,7 @@ class Board
       temporary_array << @cell_hash[coordinate_arg[counter]].empty?
     end
     # binding.pry
-    if temporary_array.any? {|answer| answer = true}
+    if temporary_array.any? {|answer| answer == false}
       return true
     else
       return false
@@ -72,6 +85,9 @@ class Board
   end
 
   def place_ship_in_cells(ship_arg, coordinate_arg)
+    if @placement_failure == true
+      puts "failure"
+    end
     coordinate_arg.length.times do |counter|
     @cell_hash[coordinate_arg[counter]].place_ship(ship_arg)
     # binding.pry
