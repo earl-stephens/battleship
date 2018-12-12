@@ -10,7 +10,9 @@ class Game
               :human_cruiser,
               :human_submarine,
               :coordinate_arg,
-              :coordinate_array
+              :coordinate_array,
+              :computer_cruiser_coordinates,
+              :human_cruiser_coordinates
 
   def initialize
     @computer_board = Board.new
@@ -24,6 +26,7 @@ class Game
     @coordinate_arg = []
     @coordinate_array = []
     @computer_cruiser_coordinates = []
+    @human_cruiser_coordinates = []
   end
 
  def main_menu
@@ -39,6 +42,7 @@ class Game
    setup_for_computer_cruiser
    setup_for_computer_submarine
    setup_for_human
+   render_board
  end
 
  def setup_for_computer_cruiser
@@ -49,7 +53,7 @@ class Game
    # if @computer_board.placement_failure == true
    # end
    @computer_cruiser_coordinates = @coordinate_array
-   @computer_board.render(true)
+   # @computer_board.render(true)
  end
 
 def setup_for_computer_submarine
@@ -77,7 +81,8 @@ def setup_for_computer_submarine
      # place_ship_computer(submarine, coordinate_arg)
    # else
    # binding.pry
-     @computer_board.render(true)
+
+     # @computer_board.render(true)
 
    puts "I have laid out my ships on the grid."
    puts "You now need to lay out your two ships."
@@ -97,7 +102,7 @@ def setup_for_computer_submarine
    if ship_arg.length == 3
      pick_horizontal_position_cruiser
    else
-     pick_horizontal_position_submarine
+     pick_horizontal_position_submarine(ship_arg)
    end
  end
 
@@ -113,7 +118,7 @@ def setup_for_computer_submarine
    return @coordinate_array
  end
 
- def pick_horizontal_position_submarine
+ def pick_horizontal_position_submarine(ship_arg)
    @coordinate_array = []
    number_array = [[1, 2], [2, 3], [3, 4]]
    random_number_array = number_array.sample
@@ -124,9 +129,9 @@ def setup_for_computer_submarine
      end
    @computer_cruiser_coordinates.each do |element|
      if element == @coordinate_array[0]
-       pick_axis_of_evil
+       pick_axis_of_evil(ship_arg)
      elsif element == @coordinate_array[1]
-       pick_axis_of_evil
+       pick_axis_of_evil(ship_arg)
      else
        return @coordinate_array
     end
@@ -137,7 +142,7 @@ def setup_for_computer_submarine
    if ship_arg.length == 3
       pick_vertical_position_cruiser
   else
-      pick_vertical_position_submarine
+      pick_vertical_position_submarine(ship_arg)
    end
  end
 
@@ -153,7 +158,7 @@ def setup_for_computer_submarine
    return @coordinate_array
  end
 
- def pick_vertical_position_submarine
+ def pick_vertical_position_submarine(ship_arg)
    @coordinate_array = []
    letter_array = [["A", "B"], ["B", "C"], ["C", "D"]]
    random_letter_array = letter_array.sample
@@ -164,12 +169,12 @@ def setup_for_computer_submarine
      end
      @computer_cruiser_coordinates.each do |element|
        if element == @coordinate_array[0]
-         pick_axis_of_evil
+         pick_axis_of_evil(ship_arg)
        elsif element == @coordinate_array[1]
-         pick_axis_of_evil
+         pick_axis_of_evil(ship_arg)
        else
          return @coordinate_array
-      end
+       end
     end
    return @coordinate_array
  end
@@ -191,11 +196,11 @@ def setup_for_computer_submarine
    get_cruiser_coordinate_inputs
    cruiser = Ship.new("Cruiser", 3)
    place_ship(cruiser, coordinate_arg)
-   @human_board.render(true)
+   # @human_board.render(true)
    get_sub_coordinate_inputs
    submarine = Ship.new("Submarine", 2)
    place_ship(submarine, coordinate_arg)
-   @human_board.render(true)
+   # @human_board.render(true)
  end
 
   def get_cruiser_coordinate_inputs
@@ -204,6 +209,7 @@ def setup_for_computer_submarine
     input_variable = gets.chomp
     # input_variable.split
     @coordinate_arg = input_variable.split
+    @human_cruiser_coordinates = @coordinate_arg
     # binding.pry
     return @coordinate_arg
     # binding.pry
@@ -216,7 +222,19 @@ def setup_for_computer_submarine
     # input_variable.split
     @coordinate_arg = input_variable.split
     # binding.pry
-    return @coordinate_arg
+    @human_cruiser_coordinates.each do |element|
+      if element == @coordinate_arg[0]
+        puts "Those are invalid coordinates. Please try again:"
+        get_sub_coordinate_inputs
+      elsif element == @coordinate_arg[1]
+        puts "Those are invalid coordinates. Please try again:"
+        get_sub_coordinate_inputs
+      else
+        return @coordinate_array
+      end
+   end
+    # binding.pry
+    # return @coordinate_arg
     # binding.pry
   end
 
@@ -231,6 +249,13 @@ def setup_for_computer_submarine
 
   def render(show_ship)
     @human_board.render(show_ship)
+  end
+
+  def render_board
+    puts "=============COMPUTER BOARD============="
+    @computer_board.render(true)
+    puts "==============PLAYER BOARD=============="
+    render(true)
   end
 
 end
