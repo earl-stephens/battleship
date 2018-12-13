@@ -49,6 +49,8 @@ class Game
    render_board
    player_shot
    computer_shot
+   fire_on_computer_ship
+
  end
 
  def setup_for_computer_cruiser
@@ -228,8 +230,6 @@ def setup_for_computer_submarine
   end
 
   def validate_shot_input
-    # binding.pry
-
     if @human_board.key_array.find do |element|
         element == @shot_input
       end
@@ -243,7 +243,6 @@ def setup_for_computer_submarine
 
   def update_shots_take_array
     @shots_taken_array << @shot_input
-    binding.pry
     return @shots_taken_array
   end
 
@@ -253,11 +252,11 @@ def setup_for_computer_submarine
     @computer_options_array.delete(computer_shot)
     # binding.pry
     return computer_shot
-
   end
 
-
-def show_shot_results
-end
+  def fire_on_computer_ship
+    @computer_board.cell_hash[@shot_input].fire_upon
+    render_board
+  end
 
 end
