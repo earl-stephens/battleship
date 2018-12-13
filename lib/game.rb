@@ -47,11 +47,15 @@ class Game
    setup_for_computer_submarine
    setup_for_human
    render_board
+   turns
+ end
+
+ def turns
    player_shot
    computer_shot
    fire_on_computer_ship
    fire_on_human_ship
-
+   report_results
  end
 
  def setup_for_computer_cruiser
@@ -261,7 +265,13 @@ def setup_for_computer_submarine
 
   def fire_on_human_ship
     @human_board.cell_hash[computer_shot].fire_upon
+  end
+
+  def report_results
+    human_shot = @computer_board.cell_hash[@shot_input].render
+    puts "Your shot on #{@shot_input} was a #{human_shot}."
     render_board
   end
+
 
 end
