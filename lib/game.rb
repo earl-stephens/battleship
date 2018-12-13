@@ -50,6 +50,7 @@ class Game
    player_shot
    computer_shot
    fire_on_computer_ship
+   fire_on_human_ship
 
  end
 
@@ -256,6 +257,10 @@ def setup_for_computer_submarine
 
   def fire_on_computer_ship
     @computer_board.cell_hash[@shot_input].fire_upon
+  end
+
+  def fire_on_human_ship
+    @human_board.cell_hash[computer_shot].fire_upon
     render_board
   end
 
