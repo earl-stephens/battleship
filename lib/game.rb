@@ -13,7 +13,10 @@ class Game
               :coordinate_array,
               :computer_cruiser_coordinates,
               :human_cruiser_coordinates,
-              :shot_input
+              :shot_input,
+              :computer_options_array,
+              :shots_taken_array,
+              :sunk_status
 
   def initialize
     @computer_board = Board.new
@@ -28,6 +31,9 @@ class Game
     @coordinate_array = []
     @computer_cruiser_coordinates = []
     @human_cruiser_coordinates = []
+    @shots_taken_array = []
+    @computer_options_array = @computer_board.key_array
+    @sunk_status = false
   end
 
  def main_menu
@@ -44,7 +50,24 @@ class Game
    setup_for_computer_submarine
    setup_for_human
    render_board
+   turns
+ end
+
+ def turns
    player_shot
+   computer_shot
+   fire_on_computer_ship
+   fire_on_human_ship
+   report_results
+   check_for_sunk_ship
+ end
+
+ def check_for_sunk_ship
+   if @sunk_status == true
+     puts "Winner!"
+   else
+     turns
+   end
  end
 
  def setup_for_computer_cruiser
@@ -220,16 +243,22 @@ def setup_for_computer_submarine
   def player_shot
     puts "Enter the coordinate for your shot:"
     @shot_input = gets.chomp
-    validate_shot_input
+      @shots_taken_array.each do |shot|
+        if shot == @shot_input
+          puts "You have already fired on that spot."
+          player_shot
+        else
+          validate_shot_input
+        end
+      end
+    # validate_shot_input
   end
 
   def validate_shot_input
-    # binding.pry
-
     if @human_board.key_array.find do |element|
         element == @shot_input
       end
-        show_shot_results
+        update_shots_take_array
       else
         puts "Please enter a valid coordinate:"
         @shot_input = gets.chomp
@@ -237,7 +266,38 @@ def setup_for_computer_submarine
       end
   end
 
-def show_shot_results
-end
+  def update_shots_take_array
+    @shots_taken_array << @shot_input
+    return @shots_taken_array
+  end
+
+  def computer_shot
+    @computer_shot = @computer_options_array.sample
+    @computer_options_array.delete(@computer_shot)
+    return @computer_shot
+  end
+
+  def fire_on_computer_ship
+    @computer_board.cell_hash[@shot_input].fire_upon
+  end
+
+  def fire_on_human_ship
+    @human_board.cell_hash[@computer_shot].fire_upon
+  end
+
+  def report_results
+    human_shot = @computer_board.cell_hash[@shot_input].render
+      if human_shot == "X"
+        @sunk_status = true
+      end
+    puts "Your shot on #{@shot_input} was a #{human_shot}."
+    computers_shot = @human_board.cell_hash[@computer_shot].render
+      if computers_shot == "X"
+        @sunk_status = true
+      end
+    puts "My shot on #{@computer_shot} was a #{computers_shot}."
+    render_board
+  end
+
 
 end
