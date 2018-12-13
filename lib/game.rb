@@ -13,7 +13,9 @@ class Game
               :coordinate_array,
               :computer_cruiser_coordinates,
               :human_cruiser_coordinates,
-              :shot_input
+              :shot_input,
+              :computer_options_array,
+              :shots_taken_array
 
   def initialize
     @computer_board = Board.new
@@ -28,6 +30,7 @@ class Game
     @coordinate_array = []
     @computer_cruiser_coordinates = []
     @human_cruiser_coordinates = []
+    @shots_taken_array = []
   end
 
  def main_menu
@@ -45,6 +48,7 @@ class Game
    setup_for_human
    render_board
    player_shot
+   computer_shot
  end
 
  def setup_for_computer_cruiser
@@ -229,13 +233,29 @@ def setup_for_computer_submarine
     if @human_board.key_array.find do |element|
         element == @shot_input
       end
-        show_shot_results
+        update_shots_take_array
       else
         puts "Please enter a valid coordinate:"
         @shot_input = gets.chomp
         validate_shot_input
       end
   end
+
+  def update_shots_take_array
+    @shots_taken_array << @shot_input
+    binding.pry
+    return @shots_taken_array
+  end
+
+  def computer_shot
+    @computer_options_array = @computer_board.key_array
+    computer_shot = @computer_options_array.sample
+    @computer_options_array.delete(computer_shot)
+    # binding.pry
+    return computer_shot
+
+  end
+
 
 def show_shot_results
 end
